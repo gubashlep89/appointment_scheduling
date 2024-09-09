@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-header">
+    <h5><%= patient.name %></h5>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Contact details: <%= patient.contact_details %></h5>
+    <h5 class="card-title">History summary:</h5>
+    <p class="card-text"><%= patient.history_summary %></p>
+    <a href="<%= edit_patient_path(patient) %>" class="btn btn-outline-secondary btn-sm">Edit patient</a>
+  </div>
+</div>

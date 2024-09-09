@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root 'doctors#index'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  devise_for :doctors, controllers: {
+    sessions: 'doctors/sessions'
+  }
+
+  resources :patients, only: %i[index show edit update]
+  resources :doctors, only: :index do
+    resources :appointments, only: %i[new index create]
+  end
 end

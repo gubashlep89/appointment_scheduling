@@ -1,0 +1,28 @@
+<div class="container-flouid">
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container">
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="<%= doctors_path %>">Doctors</a>
+          </li>
+          <% if current_doctor %>
+            <li class="nav-item">
+              <a class="nav-link active" href="<%= patients_path %>">Patients</a>
+            </li>
+          <% end %>
+        </ul>
+        <form class="">
+          <% if current_doctor %>
+            <%= form_with(local: true, url: destroy_doctor_session_path, method: :delete) do |f| %>
+              <%#= f.submit 'Sign out', class: 'btn btn-outline-secondary' %>
+            <% end %>
+            <%= button_to('Sign out', destroy_doctor_session_path, method: :delete, local: true, class: 'btn btn-outline-secondary') %>
+          <%else %>
+            <a class="btn btn-outline-primary mr-2" href="<%= new_doctor_session_path %>">Log in</a>
+          <% end %>
+        </form>
+      </div>
+    </div>
+  </nav>
+</div>

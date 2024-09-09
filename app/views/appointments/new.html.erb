@@ -1,0 +1,35 @@
+<div class="container mt-5">
+    <h1>New appointment for: <%= @doctor.name %></h1>
+    <h3>at <%=@appointment.started_at.strftime('%d-%m-%Y %H:%M') %></h3>
+
+    <div class="col col-lg-3">
+      <%= form_with(model: @appointment, url: doctor_appointments_path(@doctor), local: true, class: 'mt-4') do |form| %>
+
+        <%= form.hidden_field :started_at ,value: @appointment.started_at %>
+
+        <div class="mb-3">
+          <%= form.label :name, 'Patient name', class: 'form-label' %>
+          <%= form.text_field :name, class: 'form-control', placeholder: 'Enter your name' %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :contact_details, 'Contact details', class: 'form-label' %>
+          <%= form.text_field :contact_details, class: 'form-control', placeholder: 'Contact details' %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.check_box :repeated, class: 'form-check-input' %>
+          <%= form.label :repeated, 'Multiple times', class: 'form-label' %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :repeated_end, 'Repeated end', class: 'form-label' %>
+          <%= form.date_field :repeated_end ,min: @appointment.started_at + 1.week, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.submit 'Submit', class: 'btn btn-outline-success' %>
+        </div>
+      <% end %>
+    </div>
+</div>

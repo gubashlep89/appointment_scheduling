@@ -11,6 +11,19 @@
   </head>
 
   <body>
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+  <% if alert %>
+    <div class="alert alert-danger" role="alert">
+      <%= alert %>
+    </div>
+  <% end %>
+  <div class="content">
+    <%= render partial: 'shared/header' %>
     <%= yield %>
+  </div>
   </body>
 </html>

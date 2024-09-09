@@ -1,7 +1,20 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+# Create doctors
+emails = %w[doctor@example.com doctor1@example.com]
+emails.each do |email|
+  doctor = Doctor.find_or_initialize_by(email: email)
+  next unless doctor.new_record?
+
+  doctor.password = 'changeme'
+  doctor.name = Faker::Name.name
+  doctor.save!
+end
+
+# Create patient
+patient = Patient.find_or_initialize_by(name: 'John Doe', contact_details: '+123321123')
+patient.save!
+
+# Make an appointment for first patient with first doctor
+appointment = Appointment.find_or_initialize_by(started_at: "#{Date.current} 08:00", patient: patient, doctor: Doctor.first)
+appointment.save!
+
+puts 'Seeds added successfully!'

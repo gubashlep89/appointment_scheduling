@@ -1,0 +1,5 @@
+<tr>
+  <th scope="row"><%= time %></th>
+  <td>Empty</td>
+  <td><%= link_to 'Make appointment', new_doctor_appointment_path(doctor_id: doctor.id, started_at: "#{date} #{time}"), class: 'btn btn-outline-success btn-sm' %></td>
+</tr>
